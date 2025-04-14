@@ -1,47 +1,18 @@
- import { useState } from 'react'
+ //import { useState } from 'react'
 
 
 
-import logo from "../images/header-logo.svg";
-import avatar from "../images/image-profile.png";
+import Header from "./components/Header.jsx";
+import Main from "./components/Main.jsx";
 
 function App() {
   return (
     
       <div className="page__content">
-      <header className="header">
-        <img
-          src={logo}
-          alt="Logo Around the U.S."
-          className="logo header__logo"
-        />
-      </header>
-
+        <Header />
       {/*CONTENT*/}
-      <main className="content">
-        {/*Profile*/}
-        <section className="profile" id="profile">
-          <div className="profile__avatar-container">
-            <img src={avatar} alt="Imagen de perfil." className="profile__avatar" />
-            
-          </div>
-          <div className="profile__info">
-            <h2 className="profile__name" id="profile-name">Francisco Romero</h2>
-            <h3 className="profile__about" id="profile-job">Web Developer</h3>
-           
-          </div>
-          
-        </section>
-        {/* Contenedor de tarjetas */}
-        <div className="element-list__item">
-          {/*Aqui aparecen las cards creadas con JS*/}
-        </div>
-        {/*Footer*/}
-        <footer>
-          <p className="footer">© 2025 Around The U.S.</p>
-        </footer>
-      </main>
-            {/*Template*/}
+      <Main />
+      {/*Template*/}
       <template className="elements" id="template-selector">
         <div className="element">
           <button className="element__button-image" id="open-image">
