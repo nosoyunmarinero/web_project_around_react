@@ -1,34 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+ import { useState } from 'react'
+
+
+
+import logo from "../images/header-logo.svg";
+import avatar from "../images/image-profile.png";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    
+      <div className="page__content">
+      <header className="header">
+        <img
+          src={logo}
+          alt="Logo Around the U.S."
+          className="logo header__logo"
+        />
+      </header>
+
+      {/*CONTENT*/}
+      <main className="content">
+        {/*Profile*/}
+        <section className="profile" id="profile">
+          <div className="profile__avatar-container">
+            <img src={avatar} alt="Imagen de perfil." className="profile__avatar" />
+            
+          </div>
+          <div className="profile__info">
+            <h2 className="profile__name" id="profile-name">Francisco Romero</h2>
+            <h3 className="profile__about" id="profile-job">Web Developer</h3>
+           
+          </div>
+          
+        </section>
+        {/* Contenedor de tarjetas */}
+        <div className="element-list__item">
+          {/*Aqui aparecen las cards creadas con JS*/}
+        </div>
+        {/*Footer*/}
+        <footer>
+          <p className="footer">© 2025 Around The U.S.</p>
+        </footer>
+      </main>
+            {/*Template*/}
+      <template className="elements" id="template-selector">
+        <div className="element">
+          <button className="element__button-image" id="open-image">
+            <img src="" alt="Imagen" className="element__image" />
+          </button>
+          <button className="element__button-delete" id="delete-image-btn">
+            <img
+              src="../images/thrashcan.svg"
+              alt="Delete button"
+              className="element__image-delete"
+            />
+          </button>
+          <div className="element__description">
+            <p className="element__title" id="card-title"></p>
+            <button className="element__button element__button-like">
+              <img
+                src="../images/heart.svg"
+                className="element__like-button"
+                alt="Like button"
+              />
+            </button>
+          </div>
+        </div>
+      </template>
+    </div>
   )
 }
 
