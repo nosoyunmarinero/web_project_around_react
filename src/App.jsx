@@ -1,9 +1,8 @@
  //import { useState } from 'react'
 
 
-
-import Header from "./components/Header.jsx";
-import Main from "./components/Main.jsx";
+import Header from "./components/Header/Header.jsx";
+import Main from "./components/Main/Main.jsx";
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
       <template className="elements" id="template-selector">
         <div className="element">
           <button className="element__button-image" id="open-image">
-            <img src="" alt="Imagen" className="element__image" />
+            <img src="null" alt="Imagen" className="element__image" />
           </button>
           <button className="element__button-delete" id="delete-image-btn">
             <img
