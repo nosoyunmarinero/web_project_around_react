@@ -1,12 +1,20 @@
 import trashIcon from "../../../images/thrashcan.svg";
 import heartIcon from "../../../images/heart.svg";
+import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 // import heartIconActive from "../../../images/heart-active.svg";
 
 export default function Card(props) {
-  const { name, link,  /*isLiked*/ } = props.card;
+  const { name, link /*isLiked*/ } = props.card;
+  const { handleOpenPopup } = props; 
+
+  const imageComponent = {
+    title: "",
+    children: <ImagePopup card={{ name, link }} />
+  };
+  
   return (
     <div className="element">
-      <button className="element__button-image" id="open-image">
+      <button className="element__button-image" onClick={() => handleOpenPopup(imageComponent)}>
         <img src={link} alt="Imagen" className="element__image" />
       </button>
       <button className="element__button-delete" id="delete-image-btn">

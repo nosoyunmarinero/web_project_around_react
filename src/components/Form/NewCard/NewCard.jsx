@@ -19,7 +19,12 @@ export default function NewCard() {
               required
             />
             <span className="form__input-error" id="imageURL-error"></span>
-            
+            <button
+            id="save-button"
+            className="profile__edit-form-button profile__edit-form-button_save"
+          >
+            Guardar
+          </button>
           </form>
     )
 }

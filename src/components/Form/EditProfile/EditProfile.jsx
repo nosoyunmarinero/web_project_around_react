@@ -1,26 +1,32 @@
 export default function EditProfile() {
     return (
-        <form class="profile__edit-form" id="profile-form" novalidate>
+        <form className="profile__edit-form" id="profile-form" noValidate>
         <input
           type="text"
-          class="profile__edit-form-input profile__edit-form-input_name"
+          className="profile__edit-form-input profile__edit-form-input_name"
           placeholder="Nombre"
           id="name"
-          minlength="2"
-          maxlength="40"
+          minLength="2"
+          maxLength="40"
           required
         />
-        <span class="form__input-error" id="name-error"></span>
+        <span className="form__input-error" id="name-error"></span>
         <input
           type="text"
-          class="profile__edit-form-input profile__edit-form-input_job"
+          className="profile__edit-form-input profile__edit-form-input_job"
           placeholder="Acerca de mí"
           id="job"
-          minlength="2"
-          maxlength="200"
+          minLength="2"
+          maxLength="200"
           required
         />
-        <span class="form__input-error" id="job-error"></span>
+        <span className="form__input-error" id="job-error"></span>
+        <button
+            id="save-button"
+            className="profile__edit-form-button profile__edit-form-button_save"
+          >
+            Guardar
+          </button>
       </form>
     )
 }

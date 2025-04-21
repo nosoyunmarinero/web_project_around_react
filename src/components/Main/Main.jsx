@@ -4,6 +4,7 @@ import NewCard from "../Form/NewCard/NewCard.jsx";
 import EditProfile from "../Form/EditProfile/EditProfile.jsx";
 import EditAvatar from "../Form/EditAvatar/EditAvatar.jsx";
 import Card from "../Card/Card.jsx";
+import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 
 
 import avatar from "../../../images/image-profile.png";
@@ -30,17 +31,17 @@ const cards = [
   },
 ];
 
-console.log(cards);
-
 export default function Main() {
   const [popup, setPopup] = useState(null);
 
   const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
   const avatarPopup = { title: "Editar avatar", children: <EditAvatar /> };
-  const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> }; //Aqui va el formulario de editar perfil y avatar
+  const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> }; 
+
 
   function handleOpenPopup(popup) {
     setPopup(popup);
+    console.log(popup);
   }
   
   function handleClosePopup() {
@@ -74,7 +75,7 @@ export default function Main() {
         <div className="element-list__item">
           {/*Aqui aparecen las cards creadas con JS*/}
           {cards.map((card) => (
-      <Card key={card._id} card={card} />
+      <Card key={card._id} card={card} handleOpenPopup={handleOpenPopup} />
     ))}
         </div>
         {/*Footer*/}

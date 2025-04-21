@@ -3,25 +3,21 @@ import closeIcon from "../../../../images/Close-Icon.svg";
 export default function Popup(props) {
     const { onClose, title, children} = props;
     return (
-        <div className="popup" id="modal-avatar">
-        <button className="profile__close-button" onClick={onClose}>
-          <img
-            src={closeIcon}
-            alt="Cerrar"
-            id="avatar-button-close"
-            className="profile__close-icon"
-          />
-        </button>
-          <header className="profile__edit-form-header">
-            {title}
-          </header>
-          {children}
-          <button
-            id="save-button"
-            className="profile__edit-form-button profile__edit-form-button_save"
+        <div className="popup">
+          <div
+            className={title ? "popup__content" : "element__modal"}
           >
-            Guardar
-          </button>
+            <button className="popup__close_button" onClick={onClose}>
+              <img
+                src={closeIcon}
+                alt="Cerrar"
+                id="avatar-button-close"
+                className="profile__close-icon"
+              />
+            </button>
+            {title && <header className="profile__edit-form-header">{title}</header>}
+            {children}
+          </div>
         </div>
     )
 }
