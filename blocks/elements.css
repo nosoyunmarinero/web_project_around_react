@@ -87,8 +87,8 @@
   text-overflow: ellipsis;
 }
 
-.element__button {
-  background: none;
+.element__like-button {
+  background-image: url(../images/heart.svg) no-repeat center;
   border: none;
   cursor: pointer;
   padding: 0;

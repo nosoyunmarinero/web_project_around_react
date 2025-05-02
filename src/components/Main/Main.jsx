@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Popup from "./Popup/Popup.jsx";
 import NewCard from "../Form/NewCard/NewCard.jsx";
 import EditProfile from "../Form/EditProfile/EditProfile.jsx";
 import EditAvatar from "../Form/EditAvatar/EditAvatar.jsx";
 import Card from "../Card/Card.jsx";
-import ImagePopup from "../ImagePopup/ImagePopup.jsx";
+//import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 import Footer from "../Footer/Footer.jsx";
 import api from "../../utils/api.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 
 import avatar from "../../../images/image-profile.png";
@@ -18,6 +19,8 @@ import editIcon from "../../../images/edit-button.svg";
 export default function Main() {
   const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
+  const currentUser = useContext(CurrentUserContext);
+  
 
   const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
   const avatarPopup = { title: "Editar avatar", children: <EditAvatar /> };
@@ -36,6 +39,7 @@ export default function Main() {
 useEffect(() => {
   api.getInitialCards().then((data) => {
     setCards(data);
+    console.log(data);
   });
 }, []);
 
@@ -46,7 +50,7 @@ useEffect(() => {
         {/*Profile*/}
         <section className="profile" id="profile">
           <div className="profile__avatar-container">
-            <img src={avatar} alt="Imagen de perfil." className="profile__avatar" />
+            <img src={currentUser.avatar} alt="Imagen de perfil." className="profile__avatar" />
             <button className="profile__avatar-edit-button" id="avatar-edit-button" onClick={()=> handleOpenPopup(avatarPopup)}>
               <img
                 src={editIcon}
@@ -57,8 +61,8 @@ useEffect(() => {
             
           </div>
           <div className="profile__info">
-            <h2 className="profile__name" id="profile-name">Francisco Romero</h2>
-            <h3 className="profile__about" id="profile-job">Web Developer</h3>
+            <h2 className="profile__name" id="profile-name">{currentUser.name}</h2>
+            <h3 className="profile__about" id="profile-job">{currentUser.about}</h3>
             <button id="edit-button-open" className="profile__edit-button" onClick={() => handleOpenPopup(editProfilePopup)}>
               <img src={editIcon} alt=" Boton editar" />
             </button>
