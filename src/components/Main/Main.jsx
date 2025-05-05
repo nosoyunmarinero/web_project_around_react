@@ -10,7 +10,7 @@ import api from "../../utils/api.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 
-import avatar from "../../../images/image-profile.png";
+// import avatar from "../../../images/image-profile.png";
 import editIcon from "../../../images/edit-button.svg";
 
 

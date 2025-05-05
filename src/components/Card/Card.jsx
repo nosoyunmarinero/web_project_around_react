@@ -1,20 +1,22 @@
+import React from "react";
 
-import { useState, useEffect, useContext } from "react";
 import trashIcon from "../../../images/thrashcan.svg";
 import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 // import heartIconActive from "../../../images/heart-active.svg";
 
 export default function Card(props) {
-  const { name, link, isLiked } = props.card;
-  const { handleOpenPopup } = props; 
+  const { name, link, isLiked } = props.card;  // Removemos isLiked de la desestructuración
+  const { handleOpenPopup } = props;
 
+  // Agregamos un estado local para manejar el like
   const imageComponent = {
     title: "",
     children: <ImagePopup card={{ name, link }} />
   };
-  const cardLikeButtonClassName = `element__like-button ${
-    isLiked ? 'element__like-button-active' : ''
-  }`;
+
+  const cardLikeButtonClassName = 
+    isLiked ? 'element__like-button-active' : 'element__like-button'
+  ;
   
   
   return (
@@ -31,7 +33,7 @@ export default function Card(props) {
       </button>
       <div className="element__description">
         <p className="element__title" id="card-title">{name}</p>
-        <button className={cardLikeButtonClassName} >
+        <button className={cardLikeButtonClassName}>
         </button>
       </div>
     </div>
