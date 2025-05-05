@@ -76,14 +76,13 @@ class Api {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+  
           console.log("Tarjeta eliminada", clickedButtonID);
-          clickedButtonID.remove();
         })
         .catch((err) => console.log("Error al eliminar la tarjeta:", err));
     }
   
-    /* changeLikeCardStatus(clickedButtonID, isLiked) {
+    changeLikeCardStatus(clickedButtonID, isLiked) {
       const method = isLiked ? "PUT" : "DELETE";
       const body = isLiked ? JSON.stringify({ isLiked: true }) : null;
       return fetch(`${this._options.baseUrl}/cards/${clickedButtonID}/likes`, {
@@ -94,8 +93,8 @@ class Api {
         },
         body,
       }).then((res) => res.json());
-    }
-  */
+    } 
+  
     //Funciones de carga
   
     renderTextLoading(isLoading, saveButtonElement) {

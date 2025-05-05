@@ -16,10 +16,18 @@ function App() {
     });
   }, []);
 
+  const handleUpdateUser = (data) => {
+    (async () => {
+      await api.setUserInfo(data).then((newData) => {
+        setCurrentUser(newData);
+      });
+    })();
+  };
+
   return (
     
       <div className="page__content">
-      <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={{currentUser, handleUpdateUser}}>
         <Header />
       <Main />
       </CurrentUserContext.Provider>
