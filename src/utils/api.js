@@ -37,7 +37,7 @@ class Api {
       });
     }
   
-    updateUserInfo(newUserData) {
+    setUserInfo(newUserData) {
       return fetch(`${this._options.baseUrl}/users/me`, {
         method: "PATCH",
         headers: {
@@ -46,7 +46,7 @@ class Api {
         },
         body: JSON.stringify({
           name: newUserData.name,
-          about: newUserData.job,
+          about: newUserData.about,
         }),
       })
         .then((res) => res.json())
@@ -75,7 +75,7 @@ class Api {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
+        .then(() => {
   
           console.log("Tarjeta eliminada", clickedButtonID);
         })

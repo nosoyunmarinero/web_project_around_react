@@ -3,7 +3,9 @@ import CurrentUserContext from '../../../contexts/CurrentUserContext';
 
 export default function EditProfile() {
 
-  const currentUser = useContext(CurrentUserContext);
+  const userContext = useContext(CurrentUserContext); // Obtiene el objeto currentUser
+  const { currentUser, handleUpdateUser } = userContext;
+
   const [name, setName] = useState(currentUser.name);
   const [description, setDescription] = useState(currentUser.about);
 
@@ -20,10 +22,9 @@ export default function EditProfile() {
 
     handleUpdateUser({ name, about: description }); // Actualiza la información del usuario
   };
-    
 
     return (
-        <form className="profile__edit-form" id="profile-form" noValidate>
+        <form className="profile__edit-form" id="profile-form" noValidate onSubmit={handleSubmit}>
         <input
           type="text"
           className="profile__edit-form-input profile__edit-form-input_name"

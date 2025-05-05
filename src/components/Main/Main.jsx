@@ -39,7 +39,6 @@ export default function Main() {
 useEffect(() => {
   api.getInitialCards().then((data) => {
     setCards(data);
-    console.log(data);
   });
 }, []);
 

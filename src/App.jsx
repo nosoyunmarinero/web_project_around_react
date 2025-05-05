@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     api.getUserInfo().then((data) => {
       setCurrentUser(data);
-     
+      console.log(data); // Imprime la respuesta en la consola para verificar el objet
     });
   }, []);
 
