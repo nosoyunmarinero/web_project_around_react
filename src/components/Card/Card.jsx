@@ -1,4 +1,4 @@
-import React, { useContext  } from "react";
+//import React, { useContext  } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 import trashIcon from "../../../images/thrashcan.svg";
@@ -6,11 +6,9 @@ import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 // import heartIconActive from "../../../images/heart-active.svg";
 
 export default function Card(props) {
-  const { name, link, isLiked } = props.card;  // Removemos isLiked de la desestructuración
+  const { name, link, isLiked } = props.card;
   const { handleOpenPopup } = props;
-  const {currentUser} = useContext(CurrentUserContext);
 
-  // Agregamos un estado local para manejar el like
   const imageComponent = {
     title: "",
     children: <ImagePopup card={{ name, link }} />

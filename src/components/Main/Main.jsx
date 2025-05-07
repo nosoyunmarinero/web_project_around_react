@@ -16,8 +16,7 @@ import editIcon from "../../../images/edit-button.svg";
 
 
 
-export default function Main() {
-  const [popup, setPopup] = useState(null);
+export default function Main({popup, onOpenPopup, onClosePopup}) {
   const [cards, setCards] = useState([]);
   const {currentUser} = useContext(CurrentUserContext);
   
@@ -26,15 +25,6 @@ export default function Main() {
   const avatarPopup = { title: "Editar avatar", children: <EditAvatar /> };
   const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> }; 
 
-
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-    console.log(popup);
-  }
-  
-  function handleClosePopup() {
-    setPopup(null);
-  }
 
 useEffect(() => {
   api.getInitialCards().then((data) => {
@@ -68,7 +58,7 @@ await api.deleteCard(card._id).then(() => {
         <section className="profile" id="profile">
           <div className="profile__avatar-container">
             <img src={currentUser.avatar} alt="Imagen de perfil." className="profile__avatar" />
-            <button className="profile__avatar-edit-button" id="avatar-edit-button" onClick={()=> handleOpenPopup(avatarPopup)}>
+            <button className="profile__avatar-edit-button" id="avatar-edit-button" onClick={() => onOpenPopup(avatarPopup)}>
               <img
                 src={editIcon}
                 alt="Editar avatar"
@@ -80,17 +70,17 @@ await api.deleteCard(card._id).then(() => {
           <div className="profile__info">
             <h2 className="profile__name" id="profile-name">{currentUser.name}</h2>
             <h3 className="profile__about" id="profile-job">{currentUser.about}</h3>
-            <button id="edit-button-open" className="profile__edit-button" onClick={() => handleOpenPopup(editProfilePopup)}>
+            <button id="edit-button-open" className="profile__edit-button" onClick={() => onOpenPopup(editProfilePopup)}>
               <img src={editIcon} alt=" Boton editar" />
             </button>
           </div>
-          <button aria-label="Add Card" className="profile__add-button" id="add-button-open" onClick={() => handleOpenPopup(newCardPopup)}>+</button>
+          <button aria-label="Add Card" className="profile__add-button" id="add-button-open" onClick={() => onOpenPopup(newCardPopup)}>+</button>
         </section>
         {/* Contenedor de tarjetas */}
         <div className="element-list__item">
           {/*Aqui aparecen las cards creadas con JS*/}
           {cards.map((card) => (
-      <Card key={card._id} card={card} handleOpenPopup={handleOpenPopup} onCardLike={handleCardLike} onCardDelete={handleCardDelete}
+      <Card key={card._id} card={card} handleOpenPopup={onOpenPopup} onCardLike={handleCardLike} onCardDelete={handleCardDelete}
       
       />
     ))}
@@ -98,7 +88,7 @@ await api.deleteCard(card._id).then(() => {
         {/*Footer*/}
         <Footer />
         {popup && (
-        <Popup onClose={handleClosePopup} title={popup.title}>
+        <Popup onClose={onClosePopup} title={popup.title}>
           {popup.children}
         </Popup>
       )}
