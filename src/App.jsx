@@ -26,6 +26,15 @@ function App() {
     })();
   };
 
+  const handleUpdateAvatar = (data) => {
+    (async () => {
+      await api.setAvatar(data).then((newData) => {
+        setCurrentUser(newData);
+        handleClosePopup();
+      });
+    })();
+  };
+
   function handleOpenPopup(popup) {
     setPopup(popup);
     console.log(popup);
@@ -43,6 +52,7 @@ function App() {
         <Header />
       <Main onOpenPopup={handleOpenPopup}
     onClosePopup={handleClosePopup}
+    onUpdateAvatar={handleUpdateAvatar}
     popup={popup} />
       </CurrentUserContext.Provider>
     </div>

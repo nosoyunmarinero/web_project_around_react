@@ -16,13 +16,13 @@ import editIcon from "../../../images/edit-button.svg";
 
 
 
-export default function Main({popup, onOpenPopup, onClosePopup}) {
+export default function Main({popup, onOpenPopup, onClosePopup,onUpdateAvatar}) {
   const [cards, setCards] = useState([]);
   const {currentUser} = useContext(CurrentUserContext);
   
 
   const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
-  const avatarPopup = { title: "Editar avatar", children: <EditAvatar /> };
+  const avatarPopup = { title: "Editar avatar", children: <EditAvatar onUpdateAvatar={onUpdateAvatar}/> };
   const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> }; 
 
 
@@ -33,7 +33,6 @@ useEffect(() => {
 }, []);
 
 async function handleCardLike(card) {
-  // Verifica una vez más si a esta tarjeta ya les has dado like
   const isLiked = card.isLiked;
   
   // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
@@ -94,4 +93,5 @@ await api.deleteCard(card._id).then(() => {
       )}
       </main>
     );
-}
+    
+  }
