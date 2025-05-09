@@ -12,16 +12,15 @@ class Api {
         .then((res) => res.json())
     }
   
-    addNewCard() {
+    addNewCard(newCardData) {
       return fetch(`${this._options.baseUrl}/cards`, {
         method: "POST",
         headers: this._options.headers,
         body: JSON.stringify({
-          name: this._options.name,
-          link: this._options.link,
+          name: newCardData.name,
+          link: newCardData.link,
         }),
       }).then((res) => {
-        if (!res.ok) throw new Error(`Error: ${res.status}`);
         return res.json();
       });
     }

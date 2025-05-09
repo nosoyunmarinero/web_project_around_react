@@ -16,39 +16,14 @@ import editIcon from "../../../images/edit-button.svg";
 
 
 
-export default function Main({popup, onOpenPopup, onClosePopup,onUpdateAvatar}) {
-  const [cards, setCards] = useState([]);
+export default function Main({popup, onOpenPopup, onClosePopup, onUpdateAvatar, cards, onCardLike, onCardDelete, onCardSubmit}) {
+  
   const {currentUser} = useContext(CurrentUserContext);
   
 
-  const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
+  const newCardPopup = { title: "Nuevo lugar", children: <NewCard onCardSubmit={onCardSubmit}/> };
   const avatarPopup = { title: "Editar avatar", children: <EditAvatar onUpdateAvatar={onUpdateAvatar}/> };
   const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> }; 
-
-
-useEffect(() => {
-  api.getInitialCards().then((data) => {
-    setCards(data);
-  });
-}, []);
-
-async function handleCardLike(card) {
-  const isLiked = card.isLiked;
-  
-  // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
-  await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) =>
-         state.map((currentCard) =>
-           currentCard._id === card._id ? newCard : currentCard));
-  }).catch((error) => console.error(error));
-}
-
-async function handleCardDelete(card) {
-await api.deleteCard(card._id).then(() => {
-  setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
-})
-}
-
 
 
     return (
@@ -79,7 +54,7 @@ await api.deleteCard(card._id).then(() => {
         <div className="element-list__item">
           {/*Aqui aparecen las cards creadas con JS*/}
           {cards.map((card) => (
-      <Card key={card._id} card={card} handleOpenPopup={onOpenPopup} onCardLike={handleCardLike} onCardDelete={handleCardDelete}
+      <Card key={card._id} card={card} handleOpenPopup={onOpenPopup} onCardLike={onCardLike} onCardDelete={onCardDelete}
       
       />
     ))}
