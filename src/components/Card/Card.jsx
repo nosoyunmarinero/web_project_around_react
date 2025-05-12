@@ -1,3 +1,6 @@
+import Popup from "../Main/Popup/Popup.jsx";
+import DeleteConfirm from "../Form/DeleteConfirm/DeleteConfim.jsx";
+
 import trashIcon from "../../../images/thrashcan.svg";
 import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 
@@ -8,6 +11,14 @@ export default function Card(props) {
   const imageComponent = {
     title: "",
     children: <ImagePopup card={{ name, link }} />
+  };
+
+  const confirmationPopup = { 
+    title: "¿Estás seguro/a?", 
+    children: <DeleteConfirm 
+      cardId={props.card._id} 
+      onCardDelete={props.onCardDelete} 
+    /> 
   };
 
   const cardLikeButtonClassName = 
@@ -27,7 +38,7 @@ export default function Card(props) {
       <button className="element__button-image" onClick={() => handleOpenPopup(imageComponent)}>
         <img src={link} alt="Imagen" className="element__image" />
       </button>
-      <button className="element__button-delete" id="delete-image-btn" onClick={handleDeleteClick}>
+      <button className="element__button-delete" id="delete-image-btn" onClick={() => handleOpenPopup(confirmationPopup)}>
         <img
           src={trashIcon}
           alt="Delete button"

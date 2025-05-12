@@ -69,9 +69,11 @@ function App() {
     }).catch((error) => console.error(error));
   }
   
-  async function handleCardDelete(card) {
-  await api.deleteCard(card._id).then(() => {
-    setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
+
+  async function handleCardDelete(cardId) {
+  await api.deleteCard(cardId).then(() => {
+    setCards((state) => state.filter((currentCard) => currentCard._id !== cardId));
+    handleClosePopup();
   })
   }
 

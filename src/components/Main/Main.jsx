@@ -4,13 +4,9 @@ import NewCard from "../Form/NewCard/NewCard.jsx";
 import EditProfile from "../Form/EditProfile/EditProfile.jsx";
 import EditAvatar from "../Form/EditAvatar/EditAvatar.jsx";
 import Card from "../Card/Card.jsx";
-//import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 import Footer from "../Footer/Footer.jsx";
-import api from "../../utils/api.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-
-// import avatar from "../../../images/image-profile.png";
 import editIcon from "../../../images/edit-button.svg";
 
 
@@ -24,6 +20,7 @@ export default function Main({popup, onOpenPopup, onClosePopup, onUpdateAvatar, 
   const newCardPopup = { title: "Nuevo lugar", children: <NewCard onCardSubmit={onCardSubmit}/> };
   const avatarPopup = { title: "Editar avatar", children: <EditAvatar onUpdateAvatar={onUpdateAvatar}/> };
   const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> }; 
+ 
 
 
     return (
