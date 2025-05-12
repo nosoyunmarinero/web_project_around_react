@@ -4,6 +4,7 @@ import formValidator from '../../../utils/FormValidator';
 export default function EditAvatar({onUpdateAvatar}) {
   const inputRef = useRef();
   const formRef = useRef();
+  const avatarRef = useRef();
 
   useEffect(() => {
     if (formRef.current) {
