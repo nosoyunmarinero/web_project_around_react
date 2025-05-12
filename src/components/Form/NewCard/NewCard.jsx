@@ -1,8 +1,16 @@
-import React, {useRef} from 'react'
+import React, {useRef, useEffect} from 'react'
+import formValidator from '../../../utils/FormValidator';
 
 export default function NewCard({onCardSubmit}) {
     const titleRef = useRef();
     const imageURLRef = useRef();
+    const formRef = useRef();
+
+    useEffect(() => {
+      if (formRef.current) {
+        formValidator.setForm(formRef.current).enableValidation();
+      }
+    }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -13,7 +21,7 @@ export default function NewCard({onCardSubmit}) {
         });
     }
     return (
-        <form className="profile__edit-form" id="add-card-form" noValidate onSubmit={handleSubmit}>
+        <form className="profile__edit-form" id="add-card-form" ref={formRef} noValidate onSubmit={handleSubmit}>
             <input
               type="text"
               className="profile__edit-form-input profile__edit-form-input_name"

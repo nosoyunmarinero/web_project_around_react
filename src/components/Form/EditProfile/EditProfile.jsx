@@ -1,10 +1,19 @@
-import { useState, useContext } from 'react'; 
+import { useState, useContext, useRef, useEffect } from 'react'; 
 import CurrentUserContext from '../../../contexts/CurrentUserContext'; 
+import formValidator from '../../../utils/FormValidator';
 
 export default function EditProfile() {
 
   const userContext = useContext(CurrentUserContext); // Obtiene el objeto currentUser
   const { currentUser, handleUpdateUser } = userContext;
+  const inputRef = useRef();
+  const formRef = useRef();
+
+  useEffect(() => {
+    if (formRef.current) {
+      formValidator.setForm(formRef.current).enableValidation();
+    }
+  }, []);
 
   const [name, setName] = useState(currentUser.name);
   const [description, setDescription] = useState(currentUser.about);
@@ -24,9 +33,10 @@ export default function EditProfile() {
   };
 
     return (
-        <form className="profile__edit-form" id="profile-form" noValidate onSubmit={handleSubmit}>
+        <form className="profile__edit-form" id="profile-form" ref={formRef} noValidate onSubmit={handleSubmit}>
         <input
           type="text"
+          ref={inputRef}
           className="profile__edit-form-input profile__edit-form-input_name"
           placeholder="Nombre"
           id="name"
@@ -46,6 +56,7 @@ export default function EditProfile() {
           maxLength="200"
           required
           value={description}
+          ref={inputRef}
           onChange={handleDescriptionChange}
         />
         <span className="form__input-error" id="job-error"></span>
